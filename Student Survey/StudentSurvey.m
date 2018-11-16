@@ -6,11 +6,16 @@
 clearvars; close all; clc;
 
 %% Constants
+nf = 0; % figure number for fig array, incremented before each figure
 fileName = '11.16.18/results-for-energize-worc-2018-11-16-1046.csv';
-
+keyFileName = '11.16.18/results-for-energize-worc-2018-11-16-1042-key.xlsx';
 
 %% Read in file
 data = importStudentSurvey(fileName);
+key = readKey(keyFileName);
+
+%% Find users who actually answered Q17-23
+%  Those who picked all the same response are thrown out 
 removeRows = [];
 for i = 1:size(data,1)
     d = data(i,:);
@@ -20,17 +25,14 @@ for i = 1:size(data,1)
         removeRows = [removeRows ; i];
     end
 end
-
 uniqueData = data;
 uniqueData(removeRows,:) = [];
 
 
-%% Filter data based on parameters
+%% Q2 - Gender
 Males = data(1 == data.Q2,:);
 Females = data(2 == data.Q2,:);
 
-
-nf = 0;
 nf = nf+1;
 figs(nf) = figure;
 QCompleted = data.('Q2')(~isnan(data.('Q2')));
@@ -45,7 +47,6 @@ end
 title({'Gender'},'fontsize',50);
 % legend('Male','Female','Other');
 plotTextbox(sprintf('N = %d',length(QCompleted)));
-disp(1);
 
 %% Q17-23
 nf = nf+1;
