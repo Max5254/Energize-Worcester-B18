@@ -3,3 +3,6 @@
 *.fig
 *.mat
 *.m~
+*.png
+*.jpg
+*.jpeg
