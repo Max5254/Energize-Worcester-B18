@@ -6,10 +6,13 @@ questions = struct;
 for i = 1:size(data,1)
     d = data{i,1};
     if(d(1) == 'Q')
-        curQ = d;
-        questions.(d) = [];
+        curQNum = d;
+        curQTitle = data{i,2};
+        questions.(d) = struct;
+        questions.(d).data = [];
+        questions.(curQNum).title = curQTitle;
     else
-        questions.(curQ) = [questions.(curQ) ; {data{i,:}}];
+        questions.(curQNum).data = [questions.(curQNum).data ; {data{i,:}}];
     end
 end
 end

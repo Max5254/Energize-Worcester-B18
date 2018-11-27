@@ -15,6 +15,11 @@ keyFileName = '11.16.18/results-for-energize-worc-2018-11-16-1042-key.xlsx';
 data = importStudentSurvey(fileName);
 key = readKey(keyFileName);
 
+%% Export to Sheets
+desiredQs = {2 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 27 28 29 31};
+sheets = questions2csv(data,key,desiredQs);
+
+
 %% Find users who actually answered Q17-23
 %  Those who picked all the same response are thrown out 
 removeRows = [];
