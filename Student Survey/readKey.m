@@ -1,5 +1,5 @@
 function [questions,data] = readKey(fileName)
-%READKEY reads in the key file and outputs in a format that scripts can use
+%% READKEY reads in the key file and outputs in a format that scripts can use
 T = readtable(fileName,'ReadVariableNames',false);
 data = table2cell(T);
 questions = struct;

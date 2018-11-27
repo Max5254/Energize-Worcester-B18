@@ -103,9 +103,10 @@ switch(char(regexpi(locationChar,'(E|W)','match')))
 end
 
 %% Actually create textbox 
+f = defaultFonts;
 annotation(fig,'textbox',location,'BackgroundColor','w',...
     'String',txt,'EdgeColor','k','interpreter','none',...
     'VerticalAlignment',vertAlign,'HorizontalAlignment',horzAlign, ...
-    'FitBoxToText','on','FontName','FixedWidth','fontsize',18);
+    'FitBoxToText','on','FontName','FixedWidth','fontsize',f.textbox);
 
 end

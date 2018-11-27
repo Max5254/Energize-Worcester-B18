@@ -7,6 +7,7 @@ clearvars; close all; clc;
 
 %% Constants
 nf = 0; % figure number for fig array, incremented before each figure
+f = defaultFonts;
 fileName = '11.16.18/results-for-energize-worc-2018-11-16-1046.csv';
 keyFileName = '11.16.18/results-for-energize-worc-2018-11-16-1042-key.xlsx';
 
@@ -50,22 +51,21 @@ plotTextbox(sprintf('N = %d',length(QCompleted)));
 
 %% Q17-23
 nf = nf+1;
-figs(nf) = PieChart(data,'Q17','Mobile Control');
+figs(nf) = PieChart(data,key,'Q17','Mobile Control');
 nf = nf+1;
-figs(nf) = PieChart(data,'Q18','Weather Compensation');
+figs(nf) = PieChart(data,key,'Q18','Weather Compensation');
 nf = nf+1;
-figs(nf) = PieChart(data,'Q19','Home Presence Detection');
+figs(nf) = PieChart(data,key,'Q19','Home Presence Detection');
 nf = nf+1;
-figs(nf) = PieChart(data,'Q20','Fault Codes');
+figs(nf) = PieChart(data,key,'Q20','Fault Codes');
 nf = nf+1;
-figs(nf) = PieChart(data,'Q21','Timed Schedules');
+figs(nf) = PieChart(data,key,'Q21','Timed Schedules');
 nf = nf+1;
-figs(nf) = PieChart(data,'Q22','Energy History Graphs');
+figs(nf) = PieChart(data,key,'Q22','Energy History Graphs');
 nf = nf+1;
-figs(nf) = PieChart(data,'Q23','Individual Room Control');
+figs(nf) = PieChart(data,key,'Q23','Individual Room Control');
 
 %% Summary of weather question data
-% https://github.com/MelanieIStefan/matlikert
 nf = nf+1;
 figs(nf) = figure;
 firstSmart = 17-1;
@@ -93,37 +93,15 @@ plotTextbox(sprintf('N = %d',length(QCompleted)));
 %% Q10
 nf = nf+1;
 figs(nf) = figure;
-QCompleted = data.('Q10')(~isnan(data.('Q10')));
-labels = {'Adjust the main thermostat',
-          'Adjust my individual radiators TRV',
-          'Open my window',
-          'Take off some layers of clothing',
-          'Nothing'};
-tbl = categorical(QCompleted);
-p = pie(tbl,{},labels);
-for i = 1:length(p)
-   if(isprop(p(i),'FontSize'))
-       p(i).FontSize = 20;
-   end
-end
-title('What is done if you''re too warm.','fontsize',30);
-plotTextbox(sprintf('N = %d',length(QCompleted)));
+q = getQuestionData(data,key,'Q10');
+bigPie(q.cat,q.labels);
+title('What is done if you''re too warm.','fontsize',f.title);
+plotTextbox(sprintf('N = %d',q.numResponses));
 
 %% Q28
 nf = nf+1;
 figs(nf) = figure;
-QCompleted = data.('Q28')(~isnan(data.('Q28')));
-labels = {'Strongly agree',
-'Moderately agree',
-'Neutral',
-'Moderately disagree',
-'Strongly disagree'};
-tbl = categorical(QCompleted);
-p = pie(tbl,{},labels);
-for i = 1:length(p)
-   if(isprop(p(i),'FontSize'))
-       p(i).FontSize = 20;
-   end
-end
-title('You and your housemate(s) have similar schedules.','fontsize',30);
-plotTextbox(sprintf('N = %d',length(QCompleted)));
+q = getQuestionData(data,key,'Q10');
+bigPie(q.cat,q.labels);
+title('You and your housemate(s) have similar schedules.','fontsize',f.title);
+plotTextbox(sprintf('N = %d',q.numResponses));

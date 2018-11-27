@@ -1,11 +1,7 @@
 
 function likert(allLabels,allGroups,ratings,question)
-
-
+%% Credit to https://github.com/MelanieIStefan/matlikert
 % figure
-
-
-
 
 %% convert to percentage
 
@@ -82,6 +78,7 @@ end
 for j=1:total
 %% text(origin, total-j+0.4, OverallExperienceYear{j},'FontSize',12,'HorizontalAlignment','center');
 text(minstart-0.05, total-j, allGroups{j},'FontSize',20,'HorizontalAlignment','right','VerticalAlignment','middle');    
+       % old 0.05
 end
 
 line([origin origin],[-0.2,total-0.8], 'Color','k', 'LineStyle','--'); 
