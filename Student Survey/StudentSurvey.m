@@ -8,16 +8,23 @@ clearvars; close all; clc;
 %% Constants
 nf = 0; % figure number for fig array, incremented before each figure
 f = defaultFonts;
-fileName = '11.16.18/results-for-energize-worc-2018-11-16-1046.csv';
-keyFileName = '11.16.18/results-for-energize-worc-2018-11-16-1042-key.xlsx';
+% fileName = '11.16.18/results-for-energize-worc-2018-11-16-1046.csv';
+% keyFileName = '11.16.18/results-for-energize-worc-2018-11-16-1042-key.xlsx';
+fileName = '11.28.18/results-for-energize-worc-2018-11-28-1104.csv';
+keyFileName = '11.28.18/results-for-energize-worc-2018-11-28-1104-key.xlsx';
 
 %% Read in file
 data = importStudentSurvey(fileName);
 key = readKey(keyFileName);
 
 %% Export to Sheets
-desiredQs = {2 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 27 28 29 31};
-sheets = questions2csv(data,key,desiredQs);
+% desiredQs = {2 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31};
+pieQs = {2 7 8 11 14 15 10 13 16 27 28 29 31 24 25};
+% 14a  10a 13a 13b 
+pies = questions2csv(data,key,pieQs,'pie.txt');
+% bar charts: 9 30 26
+barQs = {9 30 26};
+bars = questions2csv(data,key,barQs,'bar.txt');
 
 
 %% Find users who actually answered Q17-23

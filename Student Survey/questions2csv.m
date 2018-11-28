@@ -1,4 +1,4 @@
-function [cellOut] = questions2csv(dataIn,keyData,questions)
+function [cellOut] = questions2csv(dataIn,keyData,questions,fileName)
 %QUESTIONS2CSV Summary of this function goes here
 numQuestions = length(questions);
 % cellOut = cell(1,3);
@@ -15,7 +15,7 @@ for i = 1:numQuestions
         cellOut = [cellOut ; qCell];
     end
 end
-cell2csv('test.txt',cellOut,';')
+cell2csv(['out/' fileName],cellOut,';')
 % data.out = [key(:,2) num2cell(table(:,2))];
 end
 
