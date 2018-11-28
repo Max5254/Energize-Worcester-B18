@@ -19,7 +19,7 @@ key = readKey(keyFileName);
 
 %% Export to Sheets
 % desiredQs = {2 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31};
-pieQs = {2 7 8 11 14 15 10 13 16 27 28 29 31 24 25};
+pieQs = {2 7 8 11 14 14.1 15 10 10.1 13 13.1 13.2 16 27 28 29 31 24 25};
 % 14a  10a 13a 13b 
 pies = questions2csv(data,key,pieQs,'pie.txt');
 % bar charts: 9 30 26

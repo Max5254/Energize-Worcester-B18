@@ -12,7 +12,7 @@ for i = 1:numQuestions
         %  10.1 represents 10_a
         dec = rem(q,1); % find decimal part of number
         int = q-dec;    % find int part of number
-        currQ = sprintf('Q%d_%c',int,char(dec+97)); % 97 is offset in ascii to a
+        currQ = sprintf('Q%d_%c',int,char(dec*10+96)); % 96 is offset in ascii to one before a
     end
     d = getQuestionData(dataIn,keyData,currQ);
     qCell = cell(size(d.labels,1)+1,3);
